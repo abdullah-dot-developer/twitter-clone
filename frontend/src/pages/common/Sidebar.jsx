@@ -12,10 +12,13 @@ const Sidebar = () => {
   const { mutate: logout } = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/auth/logout", {
-          method: "POST",
-          credentials: "include",
-        });
+        const res = await fetch(
+          "https://twitter-clone-m373.onrender.com/api/auth/logout",
+          {
+            method: "POST",
+            credentials: "include",
+          }
+        );
         const data = await res.json();
 
         if (!res.ok) {

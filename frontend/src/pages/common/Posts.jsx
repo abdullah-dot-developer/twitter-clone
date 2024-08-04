@@ -9,7 +9,7 @@ const Posts = ({ feedType, username, userId }) => {
     switch (feedType) {
       case "forYou":
         return {
-          url: "http://localhost:8000/api/posts/all",
+          url: "https://twitter-clone-m373.onrender.com/api/posts/all",
           options: {
             method: "GET",
             credentials: "include",
@@ -17,7 +17,7 @@ const Posts = ({ feedType, username, userId }) => {
         };
       case "following":
         return {
-          url: "http://localhost:8000/api/posts/following",
+          url: "https://twitter-clone-m373.onrender.com/api/posts/following",
           options: {
             method: "GET",
             credentials: "include",
@@ -25,7 +25,7 @@ const Posts = ({ feedType, username, userId }) => {
         };
       case "posts":
         return {
-          url: `http://localhost:8000/api/posts/user/${username}`,
+          url: `https://twitter-clone-m373.onrender.com/api/posts/user/${username}`,
           options: {
             method: "GET",
             credentials: "include",
@@ -33,7 +33,7 @@ const Posts = ({ feedType, username, userId }) => {
         };
       case "likes":
         return {
-          url: `http://localhost:8000/api/posts/likes/${userId}`,
+          url: `https://twitter-clone-m373.onrender.com/api/posts/likes/${userId}`,
           options: {
             method: "GET",
             credentials: "include",
@@ -41,7 +41,7 @@ const Posts = ({ feedType, username, userId }) => {
         };
       default:
         return {
-          url: "http://localhost:8000/api/posts/all",
+          url: "https://twitter-clone-m373.onrender.com/api/posts/all",
           options: {
             method: "GET",
             credentials: "include",

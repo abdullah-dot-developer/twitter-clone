@@ -23,10 +23,13 @@ const Post = ({ post }) => {
   const { mutate: deletePost, isPending: isDeleting } = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/posts/${post._id}`, {
-          method: "DELETE",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `https://twitter-clone-m373.onrender.com/api/posts/${post._id}`,
+          {
+            method: "DELETE",
+            credentials: "include",
+          }
+        );
         const data = await res.json();
 
         if (!res.ok) {
@@ -48,7 +51,7 @@ const Post = ({ post }) => {
     mutationFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/posts/like/${post._id}`,
+          `https://twitter-clone-m373.onrender.com/api/posts/like/${post._id}`,
           {
             method: "POST",
             credentials: "include",
@@ -86,7 +89,7 @@ const Post = ({ post }) => {
     mutationFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/posts/comment/${post._id}`,
+          `https://twitter-clone-m373.onrender.com/api/posts/comment/${post._id}`,
           {
             method: "POST",
             headers: {

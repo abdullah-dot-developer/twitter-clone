@@ -8,14 +8,17 @@ const useUpdateUserProfile = () => {
     useMutation({
       mutationFn: async (formData) => {
         try {
-          const res = await fetch(`http://localhost:8000/api/users/update`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-            credentials: "include",
-          });
+          const res = await fetch(
+            `https://twitter-clone-m373.onrender.com/api/users/update`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+              credentials: "include",
+            }
+          );
           const data = await res.json();
           if (!res.ok) {
             throw new Error(data.error || "Something went wrong");

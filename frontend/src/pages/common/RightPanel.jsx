@@ -9,10 +9,13 @@ const RightPanel = () => {
     queryKey: ["suggestedUsers"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/users/suggested", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          "https://twitter-clone-m373.onrender.com/api/users/suggested",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
 
         const data = await res.json();
         if (!res.ok) {

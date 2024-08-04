@@ -42,7 +42,7 @@ const ProfilePage = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/users/profile/${username}`,
+          `https://twitter-clone-m373.onrender.com/api/users/profile/${username}`,
           {
             method: "GET",
             credentials: "include",
@@ -90,7 +90,7 @@ const ProfilePage = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/posts/user/${username}`,
+          `https://twitter-clone-m373.onrender.com/api/posts/user/${username}`,
           {
             method: "GET",
             credentials: "include",

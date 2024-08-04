@@ -7,7 +7,7 @@ const useFollow = () => {
     mutationFn: async (userId) => {
       try {
         const res = await fetch(
-          `http://localhost:8000/api/users/follow/${userId}`,
+          `https://twitter-clone-m373.onrender.com/api/users/follow/${userId}`,
           {
             method: "POST",
             credentials: "include",
