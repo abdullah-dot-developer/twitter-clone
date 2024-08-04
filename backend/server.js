@@ -16,8 +16,11 @@ const app = express();
 app.use(express.json({ limit: "4mb" }));
 app.use(cookieParser())
 dotenv.config()
+
+const frontendURL = process.env.FRONTEND_URL || 'http://localhost:3000';
+
 app.use(cors({
-    origin: 'https://twitter-clone-m373.onrender.com', // your frontend URL
+    origin: frontendURL, // your frontend URL
     credentials: true // allows cookies to be sent with requests
 }))
 // console.log(process.env.MONGO_URI)
