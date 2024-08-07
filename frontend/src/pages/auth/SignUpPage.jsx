@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { MdOutlineMail } from "react-icons/md";
@@ -17,6 +17,8 @@ const SignUpPage = () => {
     fullName: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -45,6 +47,7 @@ const SignUpPage = () => {
     },
     onSuccess: () => {
       toast.success("Account created successfully!");
+      navigate("/login");
     },
   });
 
