@@ -84,7 +84,7 @@ const NotificationPage = () => {
           <div className="text-center p-4 font-bold">No notifications 🤔</div>
         )}
         {notifications?.map((notification) => (
-          <div className="border-b border-gray-700" key={notification._id}>
+          <div className="border-b border-gray-700" key={notification?._id}>
             <div className="flex gap-2 p-4">
               {notification.type === "follow" && (
                 <FaUser className="w-7 h-7 text-primary" />
@@ -92,12 +92,12 @@ const NotificationPage = () => {
               {notification.type === "like" && (
                 <FaHeart className="w-7 h-7 text-red-500" />
               )}
-              <Link to={`/profile/${notification.from.username}`}>
+              <Link to={`/profile/${notification?.from?.username}`}>
                 <div className="avatar">
                   <div className="w-8 rounded-full">
                     <img
                       src={
-                        notification.from.profileImg ||
+                        notification?.from?.profileImg ||
                         "/avatar-placeholder.png"
                       }
                     />
@@ -105,9 +105,9 @@ const NotificationPage = () => {
                 </div>
                 <div className="flex gap-1">
                   <span className="font-bold">
-                    @{notification.from.username}
+                    @{notification?.from?.username}
                   </span>{" "}
-                  {notification.type === "follow"
+                  {notification?.type === "follow"
                     ? "followed you"
                     : "liked your post"}
                 </div>

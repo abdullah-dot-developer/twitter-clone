@@ -241,13 +241,13 @@ const ProfilePage = () => {
                 <div className="flex gap-2">
                   <div className="flex gap-1 items-center">
                     <span className="font-bold text-xs">
-                      {user?.following.length}
+                      {user?.following?.length}
                     </span>
                     <span className="text-slate-500 text-xs">Following</span>
                   </div>
                   <div className="flex gap-1 items-center">
                     <span className="font-bold text-xs">
-                      {user?.followers.length}
+                      {user?.followers?.length}
                     </span>
                     <span className="text-slate-500 text-xs">Followers</span>
                   </div>
