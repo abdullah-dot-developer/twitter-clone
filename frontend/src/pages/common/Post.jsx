@@ -16,7 +16,8 @@ const Post = ({ post }) => {
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
   // console.log(authUser);
   const postOwner = post.user;
-  const isLiked = post.likes.includes(authUser._id);
+  // console.log(postOwner);
+  const isLiked = post.likes.includes(authUser?._id);
 
   const queryClient = useQueryClient();
 
@@ -51,7 +52,7 @@ const Post = ({ post }) => {
     mutationFn: async () => {
       try {
         const res = await fetch(
-          `https://twitter-clone-m373.onrender.com/api/posts/like/${post._id}`,
+          `https://twitter-clone-m373.onrender.com/api/posts/like/${post?._id}`,
           {
             method: "POST",
             credentials: "include",
@@ -72,8 +73,8 @@ const Post = ({ post }) => {
 
       // instead, update the cache directly for that post
       queryClient.setQueryData(["posts"], (oldData) => {
-        return oldData.map((p) => {
-          if (p._id === post._id) {
+        return oldData?.map((p) => {
+          if (p?._id === post?._id) {
             return { ...p, likes: updatedLikes };
           }
           return p;
@@ -114,8 +115,8 @@ const Post = ({ post }) => {
       setComment("");
 
       queryClient.setQueryData(["posts"], (oldData) => {
-        return oldData.map((p) => {
-          if (p._id === post._id) {
+        return oldData?.map((p) => {
+          if (p?._id === post?._id) {
             return { ...p, comments: updatedComments };
           }
           return p;
@@ -127,9 +128,9 @@ const Post = ({ post }) => {
     },
   });
 
-  const isMyPost = authUser._id === postOwner._id;
+  const isMyPost = authUser?._id === postOwner?._id;
 
-  const formattedDate = formatPostDate(post.createdAt);
+  const formattedDate = formatPostDate(post?.createdAt);
   // console.log(post.createdAt);
 
   const handleDeletePost = () => {
@@ -152,20 +153,20 @@ const Post = ({ post }) => {
       <div className="flex gap-2 items-start p-4 border-b border-gray-700">
         <div className="avatar">
           <Link
-            to={`/profile/${postOwner.username}`}
+            to={`/profile/${postOwner?.username}`}
             className="w-8 rounded-full overflow-hidden"
           >
-            <img src={postOwner.profileImg || "/avatar-placeholder.png"} />
+            <img src={postOwner?.profileImg || "/avatar-placeholder.png"} />
           </Link>
         </div>
         <div className="flex flex-col flex-1">
           <div className="flex gap-2 items-center">
-            <Link to={`/profile/${postOwner.username}`} className="font-bold">
-              {postOwner.fullName}
+            <Link to={`/profile/${postOwner?.username}`} className="font-bold">
+              {postOwner?.fullName}
             </Link>
             <span className="text-gray-700 flex gap-1 text-sm">
-              <Link to={`/profile/${postOwner.username}`}>
-                @{postOwner.username}
+              <Link to={`/profile/${postOwner?.username}`}>
+                @{postOwner?.username}
               </Link>
               <span>·</span>
               <span>{formattedDate}</span>
@@ -183,10 +184,10 @@ const Post = ({ post }) => {
             )}
           </div>
           <div className="flex flex-col gap-3 overflow-hidden">
-            <span>{post.text}</span>
+            <span>{post?.text}</span>
             {post.img && (
               <img
-                src={post.img}
+                src={post?.img}
                 className="h-80 object-contain rounded-lg border border-gray-700"
                 alt=""
               />
@@ -198,35 +199,38 @@ const Post = ({ post }) => {
                 className="flex gap-1 items-center cursor-pointer group"
                 onClick={() =>
                   document
-                    .getElementById("comments_modal" + post._id)
+                    .getElementById("comments_modal" + post?._id)
                     .showModal()
                 }
               >
                 <FaRegComment className="w-4 h-4  text-slate-500 group-hover:text-sky-400" />
                 <span className="text-sm text-slate-500 group-hover:text-sky-400">
-                  {post.comments.length}
+                  {post?.comments?.length}
                 </span>
               </div>
               {/* We're using Modal Component from DaisyUI */}
               <dialog
-                id={`comments_modal${post._id}`}
+                id={`comments_modal${post?._id}`}
                 className="modal border-none outline-none"
               >
                 <div className="modal-box rounded border border-gray-600">
                   <h3 className="font-bold text-lg mb-4">COMMENTS</h3>
                   <div className="flex flex-col gap-3 max-h-60 overflow-auto">
-                    {post.comments.length === 0 && (
+                    {post?.comments?.length === 0 && (
                       <p className="text-sm text-slate-500">
                         No comments yet 🤔 Be the first one 😉
                       </p>
                     )}
-                    {post.comments.map((comment) => (
-                      <div key={comment._id} className="flex gap-2 items-start">
+                    {post?.comments?.map((comment) => (
+                      <div
+                        key={comment?._id}
+                        className="flex gap-2 items-start"
+                      >
                         <div className="avatar">
                           <div className="w-8 rounded-full">
                             <img
                               src={
-                                comment.user.profileImg ||
+                                comment?.user?.profileImg ||
                                 "/avatar-placeholder.png"
                               }
                             />
@@ -235,13 +239,13 @@ const Post = ({ post }) => {
                         <div className="flex flex-col">
                           <div className="flex items-center gap-1">
                             <span className="font-bold">
-                              {comment.user.fullName}
+                              {comment?.user?.fullName}
                             </span>
                             <span className="text-gray-700 text-sm">
-                              @{comment.user.username}
+                              @{comment?.user?.username}
                             </span>
                           </div>
-                          <div className="text-sm">{comment.text}</div>
+                          <div className="text-sm">{comment?.text}</div>
                         </div>
                       </div>
                     ))}
@@ -288,7 +292,7 @@ const Post = ({ post }) => {
                     isLiked ? "text-pink-500" : "text-slate-500"
                   }`}
                 >
-                  {post.likes.length}
+                  {post?.likes?.length}
                 </span>
               </div>
             </div>
