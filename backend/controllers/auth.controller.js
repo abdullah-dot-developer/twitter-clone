@@ -1,4 +1,5 @@
 import { generateTokenAndSetCookie } from "../lib/utils/generateToken.js";
+import { sendEmail } from "../lib/utils/sendEmail.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs"
 
