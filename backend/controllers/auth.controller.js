@@ -41,6 +41,13 @@ export const signup = async (req, res) => {
             generateTokenAndSetCookie(newUser._id, res)
             await newUser.save();
 
+            try {
+                await sendEmail(newUser.email, newUser.username);
+                console.log("Email sent successfully!")
+            } catch (error) {
+                console.log("Error sending email!", error.message)
+            }
+
             res.status(201).json({
                 _id: newUser._id,
                 fullName: newUser.fullName,
